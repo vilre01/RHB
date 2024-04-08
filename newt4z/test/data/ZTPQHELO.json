@@ -1,0 +1,179 @@
+{
+  "calls": [
+    {
+      "program": {
+        "command": "CALL",
+        "module": "ZTPQHELO",
+        "csect": "ZTPQHELO",
+        "retcd": 0,
+        "before": {
+          "arg1": { "length": 0, "value": { "hex": true, "data": "" } }
+        },
+        "calls": [
+          {
+            "qsam": {
+              "command": "OPEN INPUT",
+              "module": "ZTPQHELO",
+              "dd": "SYSIN2",
+              "before": {},
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "OPEN OUTPUT",
+              "module": "ZTPQHELO",
+              "dd": "SYSOUT1",
+              "before": {},
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "READ",
+              "module": "ZTPQHELO",
+              "dd": "SYSIN1",
+              "before": {},
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" },
+                "ioarea": {
+                  "length": 80,
+                  "value": ["Azat", { "repeat": 76, "data": " " }]
+                }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "WRITE",
+              "module": "ZTPQHELO",
+              "dd": "SYSOUT1",
+              "before": {
+                "ioarea": {
+                  "length": 80,
+                  "value": ["Hello, Azat!", { "repeat": 68, "data": " " }]
+                }
+              },
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "READ",
+              "module": "ZTPQHELO",
+              "dd": "SYSIN1",
+              "before": {},
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" },
+                "ioarea": {
+                  "length": 80,
+                  "value": ["Petr", { "repeat": 76, "data": " " }]
+                }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "WRITE",
+              "module": "ZTPQHELO",
+              "dd": "SYSOUT1",
+              "before": {
+                "ioarea": {
+                  "length": 80,
+                  "value": ["Hello, Petr!", { "repeat": 68, "data": " " }]
+                }
+              },
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "READ",
+              "module": "ZTPQHELO",
+              "dd": "SYSIN1",
+              "before": {},
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "10" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "10" }
+                },
+                "status1": { "length": 2, "value": "10" },
+                "ioarea": { "length": 0, "value": { "hex": true, "data": "" } }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "CLOSE",
+              "module": "ZTPQHELO",
+              "dd": "SYSIN1",
+              "before": {},
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "CLOSE",
+              "module": "ZTPQHELO",
+              "dd": "SYSOUT1",
+              "before": {},
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                }
+              }
+            }
+          }
+        ],
+        "after": {
+          "arg1": { "length": 0, "value": { "hex": true, "data": "" } }
+        }
+      }
+    }
+  ]
+}

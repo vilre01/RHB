@@ -1,0 +1,266 @@
+      ******************************************************************
+      * Example of COBOL Test Language Extension.
+      *
+      * This test suite contains a set of tests meant to show how the  *
+      * Test4z API can be used. It is not meant to be exhaustive       *
+      * but instead show patterns of usage and code organization.      *
+      ******************************************************************
+       IDENTIFICATION DIVISION.
+       TEST-SUITE-ID. 'ZTTDOGOS'
+       PROGRAM-UNDER-TEST-ID. 'ZTPDOGOS'.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+      ******************************************************************
+      * Define any working-storage items that we need.                 *
+      ******************************************************************
+
+      * Test4z File object that will contain ADOPT input records
+       1 ADOPTS_FILE.
+         COPY ZFILE.
+
+      * Input data used to initialize above file.
+       1 ADOPT_INPUT.
+         3 MY_Data.
+           5 filler.
+               7 pic x(30) value 'SHIBA'.
+               7 pic x(25) value SPACES.
+               7 pic x(3) value '006'.
+           5 filler.
+               7 pic x(30) value 'KORGI'.
+               7 pic x(25) value SPACES.
+               7 pic x(3) value '007'.
+           5 filler.
+               7 pic x(30) value 'CHI'.
+               7 pic x(25) value SPACES.
+               7 pic x(3) value '001'.
+           5 filler.
+               7 pic x(30) value 'SHIBA'.
+               7 pic x(25) value SPACES.
+               7 pic x(3) value '002'.
+           5 filler.
+               7 pic x(30) value 'JINGO'.
+               7 pic x(25) value SPACES.
+               7 pic x(3) value '006'.
+
+      * Expected results for adoptions for arguments 1 to 9.
+       1 Expected_Values.
+           05 ev pic 9(1) occurs 9 values 8, 0, 7, 1, 0, 0, 0, 6, 0.
+
+      * Test4z QSAM file access mock object for ADOPTS DD.
+      * Used to access ADOPTS_FILE records.
+       1 ADOPTS.
+         COPY ZQSAM.
+
+      * Test4z QSAM file access mock object for OUTREP DD.
+      * Only used for output so no need to separately create
+      * file with input records - the file written to is created
+      * automatically.
+       1 OUTREP.
+         COPY ZQSAM.
+
+      * Variable given on registration of 'ForceErrorSpy' callback.
+       1 IO_command pic x(10).
+
+      * Loop counter
+       1 i pic 9(9) comp-5.
+
+      * List ptr for looping through lists
+      * record_int allows for pointer arithmetic
+       1 record_ptr usage pointer.
+       1 record_int redefines record_ptr pic s9(9) comp-5.
+
+       LINKAGE SECTION.
+      ******************************************************************
+      * Copy in our required control blocks from Test4z.               *
+      ******************************************************************
+       COPY ZTESTLS.
+
+      * Report record used when accessing records written to OUTREP
+       COPY ZTPDGARR.
+
+      * Used in 'ForceErrorSpy' callback implementation to map
+      * the given IO_COMMAND variable setup
+       1 SPY_IO_COMMAND pic x(10).
+
+      * Mapping of above pointer.  Used to validate values within
+      * the ACCUMULATOR ZTPDOGOS program variable at the time the
+      * given spy callback is invoked.
+       1 SPY_ACCUMULATOR.
+           05 ADOPTIONS PIC 9(3) OCCURS 9 TIMES.
+
+       1 mystatuscode PIC x(2).
+
+       TEST DIVISION.
+      ******************************************************************
+      * Implementation for TEST1
+      ******************************************************************
+           test entry 'test1' name 'ZTPDOGOS simple run'
+      *         Mock all external resources
+                perform mockADOPTSFile
+                perform mockOUTREPFile
+      *         Prepare and execute the ZTPDOGOS program under test
+                t4z run function
+      *         Print the results written to the OUTREP file
+                perform printReport
+           goback.
+
+      ******************************************************************
+      * Implementation for TEST2
+      ******************************************************************
+           test entry 'test2' name 'ZTPDOGOS validate accumulator'
+                perform mockADOPTSFile
+                perform mockOUTREPFile
+      *         Register the CheckAccumulatorSpy callback which will
+      *         validate that all the values in the ACCUMULATOR ZTPDOGOS
+      *         program variable are correct.
+                t4z ll register spy artifact 'ADOPTS' interface
+                   type QSAM with handler 'CheckAccumulatorSpy'.
+                t4z run function
+           goback.
+
+      ******************************************************************
+      * Spy callback implementation for checking values in accumulator
+      * This callback is registered by the 'registerCheckAccumulatorSpy'
+      * call seen above.
+      ******************************************************************
+           entry 'CheckAccumulatorSpy' using
+             ZLS_goBlock, ZLS_Q_itBlock, ZLS_Q_ifBlock
+
+      *    A spy callback is called 4 times for each operation:
+      *     - WHEN_BEFORE & SPY_BEFORE
+      *     - WHEN_BEFORE & SPY_AFTER
+      *     - WHEN_AFTER & SPY_BEFORE
+      *     - WHEN_AFTER & SPY_AFTER
+      *    Only process the last time for this callback
+           if WHEN_AFTER in ZLS_Q_itBlock and SPY_AFTER in ZLS_Q_itBlock
+              if commandName in ZLS_Q_itBlock = 'CLOSE'
+
+      *         Access ACCUMULATOR variable in ZTPDOGOS
+      *         which results in the test linkage section variable
+      *         SPY_ACCUMULATOR mapped onto the memory of that variable.
+                get variable 'ACCUMULATOR' TO SPY_ACCUMULATOR
+
+      *         Check accumulator values as assert correct values
+      *         The 'fail_accumulator' will end the test with given
+      *         message if the condition is false
+                perform varying i from 1 by 1 until i > 9
+                     if adoptions(i) not = expected_values(i)
+                         t4z fail 'Invalid accumulator value'
+                     end-if
+                end-perform
+              end-if
+           end-if
+           goback.
+
+      ******************************************************************
+      * Implementation for TEST3
+      ******************************************************************
+           test entry 'test3'  name 'ZTPDOGOS force OPEN error'
+                perform mockADOPTSFile
+                perform mockOUTREPFile
+                move 'OPEN' to IO_COMMAND
+                perform registerForceErrorSpy
+                run function
+           goback.
+
+      ******************************************************************
+      * Implementation for TEST4
+      ******************************************************************
+           test entry 'test4' name 'ZTPDOGOS force READ error'
+                perform mockADOPTSFile
+                perform mockOUTREPFile
+                move 'READ' to IO_COMMAND
+                perform registerForceErrorSpy
+                t4z run function
+           goback.
+
+      ******************************************************************
+      * Spy callback implementation to force IO error paths.
+      * Used by both TEST3 and TEST4. The registration of this
+      * callback is done by PERFORM of 'registerForceErrorSpy' proc
+      * in each of these tests.
+      * Note the SPY_IO_COMMAND parameter which is the IO_COMMAND value
+      * initially set up when this spy was registered
+      ******************************************************************
+           entry 'ForceErrorSpy' using
+               ZLS_goBlock, ZLS_Q_itBlock, ZLS_Q_ifBlock,
+               SPY_IO_COMMAND
+
+      *    A spy callback is called 4 times for each operation:
+      *     - WHEN_BEFORE & SPY_BEFORE
+      *     - WHEN_BEFORE & SPY_AFTER
+      *     - WHEN_AFTER & SPY_BEFORE
+      *     - WHEN_AFTER & SPY_AFTER
+      *    Only process the last time for this callback
+           if WHEN_AFTER in ZLS_Q_itBlock and SPY_AFTER in ZLS_Q_itBlock
+      *       Map the linkage section to the address of the last record.
+              set address of mystatuscode to statuscode in ZLS_Q_ifBlock
+
+      *       Check if the command that caused this callback to be
+      *       invoked is the one we want to process on.
+              if commandName in ZLS_Q_itBlock(1:4) = 'OPEN'
+                 and SPY_IO_COMMAND = 'OPEN'
+                 move '35' to mystatuscode
+              else
+                 if commandName in ZLS_Q_itBlock(1:4) = 'READ'
+                    and SPY_IO_COMMAND = 'READ'
+      *             Set error code on 5th READ
+                    if (iteration in ZLS_Q_itBlock = 5)
+                       move '46' to mystatuscode
+                    end-if
+                 end-if
+               end-if
+            end-if
+           goback.
+
+      ******************************************************************
+      * Common proc to mock ADOPTS file
+      ******************************************************************
+       mockADOPTSFile.
+      * Create a base file object containing ADOPTS input records.
+           t4z file ADOPTS_FILE with 5 records of length 58 columns
+             as ADOPT_INPUT.
+      * Initialize QSAM file access mock object for the ADOPTS DD
+      * with the file object created above.
+           t4z mock QSAM file 'ADOPTS' with ADOPTS_FILE as ADOPTS.
+
+      ******************************************************************
+      * Common proc to mock OUTREP QSAM output file.
+      ******************************************************************
+       mockOUTREPFile.
+           t4z mock KSDS file 'OUTREP' of length 58 as OUTREP.
+
+      ******************************************************************
+      * Common proc to display contents of OUTREP file
+      ******************************************************************
+       printReport.
+      *    set the address of our record pointer to
+      *    the root address of our records in OUPREP file
+           set record_ptr to ptr in records_ in file_ in OUTREP
+
+      *    loop thru all the records and display each one
+           perform varying i from 1 by 1 until
+           not (i<=size_ in records_ in ADOPTS_FILE)
+              set address of ADOPTED-REPORT-REC to record_ptr
+              display ADOPTED-REPORT-REC
+
+      *       Compute the next record pointer by adding the
+      *       record stride (length) to the current record ptr
+              add stride in records_ in ADOPTS_FILE to record_int
+           end-perform.
+
+      ******************************************************************
+      * Register proc for 'ForceErrorSpy' callback on the ADOPTS DD.
+      * Used by both TEST3 and TEST4. Note the IO_COMMAND
+      * variable given as part of the registration.  Every
+      * invocation of the callback will pass along the address
+      * of this variable.  The callback implementation can then
+      * use this data for whatever purpose it wants.
+      * In this usage the operation to force the
+      * error upon (READ/OPEN) is setup by each test.
+      ******************************************************************
+       registerForceErrorSpy.
+           t4z ll register spy artifact 'ADOPTS' interface type QSAM
+              with handler 'ForceErrorSpy' user data IO_COMMAND
+
+       END TEST.

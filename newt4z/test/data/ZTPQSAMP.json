@@ -1,0 +1,552 @@
+{
+  "ignorelist": [],
+  "calls": [
+    {
+      "program": {
+        "command": "CALL",
+        "module": "ZTPQSAMP",
+        "csect": "ZTPQSAMP",
+        "retcd": 0,
+        "before": {
+          "arg1": { "length": 0, "value": { "hex": true, "data": "" } }
+        },
+        "calls": [
+          {
+            "qsam": {
+              "command": "OPEN OUTPUT",
+              "module": "ZTPQSAMP",
+              "dd": "TESTQSAM",
+              "before": {},
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "WRITE",
+              "module": "ZTPQSAMP",
+              "dd": "TESTQSAM",
+              "before": {
+                "ioarea": {
+                  "length": 80,
+                  "value": { "repeat": 80, "data": "A" }
+                }
+              },
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "WRITE",
+              "module": "ZTPQSAMP",
+              "dd": "TESTQSAM",
+              "before": {
+                "ioarea": {
+                  "length": 80,
+                  "value": { "repeat": 80, "data": "B" }
+                }
+              },
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "WRITE",
+              "module": "ZTPQSAMP",
+              "dd": "TESTQSAM",
+              "before": {
+                "ioarea": {
+                  "length": 80,
+                  "value": { "repeat": 80, "data": "C" }
+                }
+              },
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "WRITE",
+              "module": "ZTPQSAMP",
+              "dd": "TESTQSAM",
+              "before": {
+                "ioarea": {
+                  "length": 80,
+                  "value": { "repeat": 80, "data": "D" }
+                }
+              },
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "WRITE",
+              "module": "ZTPQSAMP",
+              "dd": "TESTQSAM",
+              "before": {
+                "ioarea": {
+                  "length": 80,
+                  "value": { "repeat": 80, "data": "E" }
+                }
+              },
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "WRITE",
+              "module": "ZTPQSAMP",
+              "dd": "TESTQSAM",
+              "before": {
+                "ioarea": {
+                  "length": 80,
+                  "value": { "repeat": 80, "data": "F" }
+                }
+              },
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "WRITE",
+              "module": "ZTPQSAMP",
+              "dd": "TESTQSAM",
+              "before": {
+                "ioarea": {
+                  "length": 80,
+                  "value": { "repeat": 80, "data": "G" }
+                }
+              },
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "WRITE",
+              "module": "ZTPQSAMP",
+              "dd": "TESTQSAM",
+              "before": {
+                "ioarea": {
+                  "length": 80,
+                  "value": { "repeat": 80, "data": "H" }
+                }
+              },
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "WRITE",
+              "module": "ZTPQSAMP",
+              "dd": "TESTQSAM",
+              "before": {
+                "ioarea": {
+                  "length": 80,
+                  "value": { "repeat": 80, "data": "I" }
+                }
+              },
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "WRITE",
+              "module": "ZTPQSAMP",
+              "dd": "TESTQSAM",
+              "before": {
+                "ioarea": {
+                  "length": 80,
+                  "value": { "repeat": 80, "data": "J" }
+                }
+              },
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "WRITE",
+              "module": "ZTPQSAMP",
+              "dd": "TESTQSAM",
+              "before": {
+                "ioarea": {
+                  "length": 80,
+                  "value": { "repeat": 80, "data": "K" }
+                }
+              },
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "CLOSE",
+              "module": "ZTPQSAMP",
+              "dd": "TESTQSAM",
+              "before": {},
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "OPEN INPUT",
+              "module": "ZTPQSAMP",
+              "dd": "TESTQSAM",
+              "before": {},
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "READ",
+              "module": "ZTPQSAMP",
+              "dd": "TESTQSAM",
+              "before": {},
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" },
+                "ioarea": {
+                  "length": 80,
+                  "value": { "repeat": 80, "data": "A" }
+                }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "READ",
+              "module": "ZTPQSAMP",
+              "dd": "TESTQSAM",
+              "before": {},
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" },
+                "ioarea": {
+                  "length": 80,
+                  "value": { "repeat": 80, "data": "B" }
+                }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "READ",
+              "module": "ZTPQSAMP",
+              "dd": "TESTQSAM",
+              "before": {},
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" },
+                "ioarea": {
+                  "length": 80,
+                  "value": { "repeat": 80, "data": "C" }
+                }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "READ",
+              "module": "ZTPQSAMP",
+              "dd": "TESTQSAM",
+              "before": {},
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" },
+                "ioarea": {
+                  "length": 80,
+                  "value": { "repeat": 80, "data": "D" }
+                }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "READ",
+              "module": "ZTPQSAMP",
+              "dd": "TESTQSAM",
+              "before": {},
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" },
+                "ioarea": {
+                  "length": 80,
+                  "value": { "repeat": 80, "data": "E" }
+                }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "READ",
+              "module": "ZTPQSAMP",
+              "dd": "TESTQSAM",
+              "before": {},
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" },
+                "ioarea": {
+                  "length": 80,
+                  "value": { "repeat": 80, "data": "F" }
+                }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "READ",
+              "module": "ZTPQSAMP",
+              "dd": "TESTQSAM",
+              "before": {},
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" },
+                "ioarea": {
+                  "length": 80,
+                  "value": { "repeat": 80, "data": "G" }
+                }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "READ",
+              "module": "ZTPQSAMP",
+              "dd": "TESTQSAM",
+              "before": {},
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" },
+                "ioarea": {
+                  "length": 80,
+                  "value": { "repeat": 80, "data": "H" }
+                }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "READ",
+              "module": "ZTPQSAMP",
+              "dd": "TESTQSAM",
+              "before": {},
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" },
+                "ioarea": {
+                  "length": 80,
+                  "value": { "repeat": 80, "data": "I" }
+                }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "READ",
+              "module": "ZTPQSAMP",
+              "dd": "TESTQSAM",
+              "before": {},
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" },
+                "ioarea": {
+                  "length": 80,
+                  "value": { "repeat": 80, "data": "J" }
+                }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "READ",
+              "module": "ZTPQSAMP",
+              "dd": "TESTQSAM",
+              "before": {},
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" },
+                "ioarea": {
+                  "length": 80,
+                  "value": { "repeat": 80, "data": "K" }
+                }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "READ",
+              "module": "ZTPQSAMP",
+              "dd": "TESTQSAM",
+              "before": {},
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "10" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "10" }
+                },
+                "status1": { "length": 2, "value": "10" }
+              }
+            }
+          },
+          {
+            "qsam": {
+              "command": "CLOSE",
+              "module": "ZTPQSAMP",
+              "dd": "TESTQSAM",
+              "before": {},
+              "after": {
+                "cc": { "length": 1, "value": { "hex": true, "data": "00" } },
+                "status": {
+                  "length": 1,
+                  "value": { "hex": true, "data": "00" }
+                },
+                "status1": { "length": 2, "value": "00" }
+              }
+            }
+          }
+        ],
+        "after": {
+          "arg1": { "length": 0, "value": { "hex": true, "data": "" } }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+//ZTEDBVFY JOB ACCT#,ZLDLINK,NOTIFY=&SYSUID,MSGLEVEL=(1,1)
+//*-------------------------------------------------------------------*
+//*
+//*          Copyright (c) 2023 Broadcom. All Rights Reserved.
+//* The term Broadcom refers to Broadcom Inc. and/or its subsidiaries.
+//*
+//* THIS JCL WILL RUN A VERIFY ON A SAMPLE PROGRAM THAT USES DB2.
+//*
+//*-------------------------------------------------------------------*
+//*
+//* STEPS TO PERFORM:
+//*
+//* 1. EDIT THE ABOVE JOBCARD ACCORDINGLY.
+//*
+//* 2. REPLACE $$HLQI WITH HIGH LEVEL QUALIFIER FOR TEST4Z INSTALLATION
+//*    EXAMPLE: c $$HLQI T4Z.HLQ ALL
+//*
+//* 3. REPLACE $$HLQU WITH HIGH LEVEL QUALIFIER FOR TEST4Z USER DATASETS
+//*    EXAMPLE: c $$HLQU MYPRFX all
+//*
+//* 4. REPLACE $$MYLL WITH NAME OF LOAD LIBRARY CONTAINING USER MODULES
+//*    EXAMPLE: c $$MYLL MYPRFX.MY.LOADLIB all
+//*
+//* 5. REPLACE $$DBPREF WITH THE PREFIX OF YOUR DB2 INSTALLATION
+//*    EXAMPLE: c $$DBPREF DB2.DB2C10 all
+//*
+//* 6. REPLACE $$DB WITH THE DB2 SSID
+//*    EXAMPLE: c $$DBSSID DT31 all
+//*
+//* 7. REPLACE $$PGM WITH THE PROGRAM YOU WISH TO RUN COLLECTION FOR.
+//*    EXAMPLE: c $$PGM MYPROGRM all
+//*
+//* 8. REPLACE $$PLN WITH THE DB2 PLAN NAME.
+//*    EXAMPLE: c $$PLN MYPLAN all
+//*
+//*-------------------------------------------------------------------*
+//RUN      EXEC PGM=IKJEFT01,REGION=0M,DYNAMNBR=20
+//STEPLIB  DD DISP=SHR,DSN=$$HLQI.CT4ZLOAD
+//         DD DISP=SHR,DSN=$$MYLL
+//         DD DISP=SHR,DSN=$$DBPREF.SDSNLOAD
+//ZLDATA   DD DISP=SHR,DSN=$$HLQU.T4Z.ZLDATA
+//ZLCOVER  DD DISP=SHR,DSN=$$HLQU.T4Z.ZLCOVER
+//ZLMSG    DD SYSOUT=*
+//SYSPRINT DD SYSOUT=*
+//SYSTSPRT DD SYSOUT=*
+//SYSOUT   DD SYSOUT=*
+//SYSTSIN  DD *
+  DSN SYSTEM($$DBSSID)
+  RUN PROGRAM(ZTESTEXE) PLAN($$PLN) -
+      LIB('$$HLQI.CT4ZLOAD')
+  END
+/*
+//ZLOPTS   DD *
+RUN($$PGM),VERIFY
+COVERAGE
+/*
+//CEEOPTS  DD *
+TRAP(ON,NOSPIE)
+/*

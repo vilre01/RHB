@@ -1,0 +1,18 @@
+Refer to this table in case you need to locate particular member for
+running of Test4z samples.
+
+| Member     | Description                                             |
+|------------|---------------------------------------------------------|
+| ZTEALLOC   | Allocates sample datasets TEST.LOAD, ZLCOVER, ZLDATA    |
+| ZTEDBBND   | Runs a Db2 bind on ZESTRUN and ZTESTEXE                 |
+| ZTEDBREC   | Runs the recording of a sample program with Db2         |
+| ZTEDBREP   | Runs replay of a sample program with Db2                |
+| ZTEDBVFY   | Runs verify of a sample program with Db2                |
+| ZTEDLREC   | Runs the recording of a sample program with batch IMS   |
+| ZTEDLREP   | Runs replay of a sample program with batch IMS          |
+| ZTEDLVFY   | Runs verify of a sample program with batch IMS          |
+| ZTEIOREC   | Runs the recording of a sample program with file I/O    |
+| ZTEIOREP   | Runs replay of a sample program with file I/O           |
+| ZTEIOVFY   | Runs verify of a sample program with file I/O           |
+| ZTEUNTST   | Runs a unit test with code coverage                     |
+| ZTEVERS    | Prints Test4z version information                       |

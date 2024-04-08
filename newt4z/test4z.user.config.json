@@ -1,0 +1,14 @@
+{
+  "sdkHome": "C:\\Users\\rv891947\\AppData\\Roaming\\npm\\node_modules\\@broadcom\\test4z-framework",
+  "hostname": "172.29.11.9",
+  "sshPort": 22,
+  "user": "crlc31",
+  "sshKeyFile": "C:/Users/rv891947/.ssh/id_test4z",
+  "zosWorkspacePath": "/newt4z",
+  "createZfs": false,
+  "createSamples": true,
+  "testHlq": "CRLC31.NEWT4Z",
+  "testVolser": "CAEDS6",
+  "test4zRuntimeHlqType": "automatic",
+  "test4zRuntimeHlq": null
+}

@@ -1,0 +1,48 @@
+//ZTEUNTST JOB ACCT#,ZLDLINK,NOTIFY=&SYSUID,MSGLEVEL=(1,1)
+//*-------------------------------------------------------------------*
+//*
+//*          Copyright (c) 2023 Broadcom. All Rights Reserved.
+//* The term Broadcom refers to Broadcom Inc. and/or its subsidiaries.
+//*
+//* THIS JCL WILL RUN A SET OF UNIT TESTS BASED ON A SELECTION CRITERIA
+//* TO LOCATE MEMBERS IN A TEST.LOAD DATASET.
+//*
+//*-------------------------------------------------------------------*
+//*
+//* STEPS TO PERFORM:
+//*
+//* 1. EDIT THE ABOVE JOBCARD ACCORDINGLY.
+//*
+//* 2. REPLACE $$HLQI WITH HIGH LEVEL QUALIFIER FOR TEST4Z INSTALLATION
+//*    EXAMPLE: c $$HLQI T4Z.HLQ ALL
+//*
+//* 3. REPLACE $$HLQU WITH HIGH LEVEL QUALIFIER FOR TEST4Z USER DATASETS
+//*    EXAMPLE: c $$HLQU MYPRFX all
+//*
+//* 4. REPLACE $$MYLL WITH NAME OF LOAD LIBRARY CONTAINING USER MODULES
+//*    EXAMPLE: c $$MYLL MYPRFX.MY.LOADLIB all
+//*
+//* 5. REPLACE $$SRCH WITH THE SEARCH CRITERIA TO LOCATE MEMBERS TO
+//*    EXECUTE IN THE TEST SUITE RUN. THESE MEMBERS ARE THE LOAD MODULES
+//*    THAT HAVE BEEN COMPILED FROM THE TEST CASE SOURCE.
+//*    FOR EXAMPLE: * MEANS ALL MEMBERS
+//*                 ABC* MEANS ALL MEMBERS STARTING WITH ABC
+//*                 DEFG MEANS A SPECIFIC MEMBER NAMES DEFG
+//*    EXAMPLE: c $$SRCH * ALL
+//*
+//*------------------------------------------------------------------*
+//         EXEC PGM=ZESTRUN,
+//            PARM='D=$$HLQU.T4Z.TEST.LOAD,M=$$SRCH'
+//STEPLIB  DD DISP=SHR,DSN=$$HLQI.CT4ZLOAD
+//         DD DISP=SHR,DSN=$$MYLL
+//         DD DISP=SHR,DSN=$$HLQU.T4Z.TEST.LOAD
+//ZLDATA   DD DISP=SHR,DSN=$$HLQU.T4Z.ZLDATA
+//ZLCOVER  DD DISP=SHR,DSN=$$HLQU.T4Z.ZLCOVER
+//ZLMSG    DD SYSOUT=*
+//SYSOUT   DD SYSOUT=*
+//ZLOPTS   DD *
+COVERAGE
+/*
+//CEEOPTS  DD *
+TRAP(ON,NOSPIE)
+/*
