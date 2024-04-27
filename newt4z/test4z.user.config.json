@@ -1,14 +1,14 @@
 {
   "sdkHome": "C:\\Users\\rv891947\\AppData\\Roaming\\npm\\node_modules\\@broadcom\\test4z-framework",
-  "hostname": "172.29.11.9",
+  "hostname": "MSTRSVW.LVN.BROADCOM.NET",
   "sshPort": 22,
-  "user": "crlc31",
+  "user": "VILRE01",
   "sshKeyFile": "C:/Users/rv891947/.ssh/id_test4z",
-  "zosWorkspacePath": "/newt4z",
+  "zosWorkspacePath": "/u/users/vilre01",
   "createZfs": false,
   "createSamples": true,
-  "testHlq": "CRLC31.NEWT4Z",
-  "testVolser": "CAEDS6",
+  "testHlq": "VILRE01.NEWT4Z",
+  "testVolser": "TSO009",
   "test4zRuntimeHlqType": "automatic",
   "test4zRuntimeHlq": null
 }
