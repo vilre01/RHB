@@ -7,8 +7,10 @@
   "zosWorkspacePath": "/u/users/vilre01",
   "createZfs": false,
   "createSamples": true,
+  "cobolSteplib": "IGY.SIGYCOMP",
   "testHlq": "VILRE01.NEWT4Z",
   "testVolser": "TSO009",
   "test4zRuntimeHlqType": "automatic",
-  "test4zRuntimeHlq": null
+  "test4zRuntimeHlq": null,
+  "zosCodepage": 1140
 }

@@ -10,3 +10,4 @@ src-gen/
 .synczignore
 .nycrc.json
 package-lock.json
+.t4z-capture/

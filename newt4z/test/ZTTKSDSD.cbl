@@ -31,53 +31,83 @@
       ******************************************************************
       * Define any working-storage items that we need.                 *
       ******************************************************************
-       1 FILE_FixedData.
+       1 FILE_FIXEDDATA.
          COPY ZFILE.
 
-       1 KSDS_FixedData.
+       1 KSDS_FIXEDDATA.
          COPY ZKSDS.
          COPY ZSPKSDS.
-         3 MY_Data.
-           5 PIC X(250) VALUE '00000001This is record 1'.
-           5 PIC X(250) VALUE '00000002This is record 2'.
-           5 PIC X(250) VALUE '00000003This is record 3'.
-           5 PIC X(250) VALUE '00000004This is record 4'.
-           5 PIC X(250) VALUE '00000005This is record 5'.
-           5 PIC X(250) VALUE '00000006This is record 6'.
-           5 PIC X(250) VALUE '00000007This is record 7'.
-           5 PIC X(250) VALUE '00000008This is record 8'.
-           5 PIC X(250) VALUE '00000009This is record 9'.
-           5 PIC X(250) VALUE '00000010This is record 10'.
+          3 MY_DATA.
+             5               PIC X(250) VALUE '00000001This is record 1'
+                                                                      .
+             5               PIC X(250) VALUE '00000002This is record 2'
+                                                                      .
+             5               PIC X(250) VALUE '00000003This is record 3'
+                                                                      .
+             5               PIC X(250) VALUE '00000004This is record 4'
+                                                                      .
+             5               PIC X(250) VALUE '00000005This is record 5'
+                                                                      .
+             5               PIC X(250) VALUE '00000006This is record 6'
+                                                                      .
+             5               PIC X(250) VALUE '00000007This is record 7'
+                                                                      .
+             5               PIC X(250) VALUE '00000008This is record 8'
+                                                                      .
+             5               PIC X(250) VALUE '00000009This is record 9'
+                                                                      .
+             5               PIC X(250) VALUE 
+                                            '00000010This is record 10'.
 
-       1 FILE_VariableData.
+       1 FILE_VARIABLEDATA.
          COPY ZFILE.
 
-       1 KSDS_VariableData.
+       1 KSDS_VARIABLEDATA.
          COPY ZKSDS.
          COPY ZSPKSDS.
-         3 MY_Data.
-           5 PIC 9(4) comp-5 VALUE 27.
-           5 PIC X(27) VALUE '00000001This is record 1  a'.
-           5 PIC 9(4) comp-5 VALUE 28.
-           5 PIC X(28) VALUE '00000002This is record 2  ab'.
-           5 PIC 9(4) comp-5 VALUE 29.
-           5 PIC X(29) VALUE '00000003This is record 3  abc'.
-           5 PIC 9(4) comp-5 VALUE 30.
-           5 PIC X(30) VALUE '00000004This is record 4  abcd'.
-           5 PIC 9(4) comp-5 VALUE 31.
-           5 PIC X(31) VALUE '00000005This is record 5  abcde'.
-           5 PIC 9(4) comp-5 VALUE 32.
-           5 PIC X(32) VALUE '00000006This is record 6  abcdef'.
-           5 PIC 9(4) comp-5 VALUE 33.
-           5 PIC X(33) VALUE '00000007This is record 7  abcdefg'.
-           5 PIC 9(4) comp-5 VALUE 34.
-           5 PIC X(34) VALUE '00000008This is record 8  abcdefgh'.
-           5 PIC 9(4) comp-5 VALUE 35.
-           5 PIC X(35) VALUE '00000009This is record 9  abcdefghi'.
-           5 PIC 9(4) comp-5 VALUE 36.
-           5 PIC X(36) VALUE '00000010This is record 10 abcdefghij'.
+          3 MY_DATA.
+             5               PIC 9(4) COMP-5
+                                        VALUE 27.
+             5               PIC X(27)  VALUE 
+                                          '00000001This is record 1  a'.
+             5               PIC 9(4) COMP-5
+                                        VALUE 28.
+             5               PIC X(28)  VALUE 
+                                         '00000002This is record 2  ab'.
+             5               PIC 9(4) COMP-5
+                                        VALUE 29.
+             5               PIC X(29)  VALUE 
+                                        '00000003This is record 3  abc'.
+             5               PIC 9(4) COMP-5
+                                        VALUE 30.
+             5               PIC X(30)  VALUE 
+                                       '00000004This is record 4  abcd'.
+             5               PIC 9(4) COMP-5
+                                        VALUE 31.
+             5               PIC X(31)  VALUE 
+                                      '00000005This is record 5  abcde'.
+             5               PIC 9(4) COMP-5
+                                        VALUE 32.
+             5               PIC X(32)  VALUE 
+                                     '00000006This is record 6  abcdef'.
+             5               PIC 9(4) COMP-5
+                                        VALUE 33.
+             5               PIC X(33)  VALUE 
+                                    '00000007This is record 7  abcdefg'.
+             5               PIC 9(4) COMP-5
+                                        VALUE 34.
+             5               PIC X(34)  VALUE 
+                                   '00000008This is record 8  abcdefgh'.
+             5               PIC 9(4) COMP-5
+                                        VALUE 35.
+             5               PIC X(35)  VALUE 
+                                  '00000009This is record 9  abcdefghi'.
+             5               PIC 9(4) COMP-5
+                                        VALUE 36.
+             5               PIC X(36)  VALUE 
+                                 '00000010This is record 10 abcdefghij'.
 
-       1 KSDS_Function USAGE FUNCTION-POINTER.
+       1 KSDS_FUNCTION USAGE FUNCTION-POINTER.
 
        LINKAGE SECTION.
       ******************************************************************
@@ -91,27 +121,27 @@
        1 MY_KSDS_SPY.
          COPY ZSPKSDS.
 
-       1 MY_KSDSData PIC X(250).
+       1 MY_KSDSDATA         PIC X(250).
 
        PROCEDURE DIVISION.
       ******************************************************************
       * Register a set of tests to be run.                             *
       ******************************************************************
-           move low-values to I_Test
-           set testFunction in ZWS_Test to entry 'mytestFixed'
-           move 'Fixed KSDS test' to testName in ZWS_Test
-           call ZTESTUT using ZWS_Test
+           MOVE LOW-VALUES TO I_TEST
+           SET TESTFUNCTION IN ZWS_TEST TO ENTRY 'mytestFixed'
+           MOVE 'Fixed KSDS test' TO TESTNAME IN ZWS_TEST
+           CALL ZTESTUT USING ZWS_TEST
 
-           move low-values to I_Test
-           set testFunction in ZWS_Test to entry 'mytestVariable'
-           move 'Variable KSDS test' to testName in ZWS_Test
-           call ZTESTUT using ZWS_Test
+           MOVE LOW-VALUES TO I_TEST
+           SET TESTFUNCTION IN ZWS_TEST TO ENTRY 'mytestVariable'
+           MOVE 'Variable KSDS test' TO TESTNAME IN ZWS_TEST
+           CALL ZTESTUT USING ZWS_TEST
 
       ******************************************************************
       * Once all of the tests have been registered, return back to     *
       * Test4z to start processing.                                    *
       ******************************************************************
-           goback.
+           GOBACK.
 
       ******************************************************************
       *                                                                *
@@ -121,42 +151,42 @@
       *                                                                *
       *                                                                *
       ******************************************************************
-           entry 'mytestFixed'.
+           ENTRY 'mytestFixed'.
 
       ******************************************************************
       * Create a base file object for KSDS file TESTKSDS with data     *
       * provided. The data for a fixed-length file is a set of records *
       * of the same length as the record size of the file.             *
       ******************************************************************
-           move low-values to I_File
-           set recordAddress in ZWS_File to
-               address of MY_Data in KSDS_FixedData
-           move 10 to recordCount in ZWS_File
-           move 250 to recordSize in ZWS_File
-           call ZTESTUT using ZWS_File, fileObject in FILE_FixedData
+           MOVE LOW-VALUES TO I_FILE
+           SET RECORDADDRESS IN ZWS_FILE TO
+              ADDRESS OF MY_DATA IN KSDS_FIXEDDATA
+           MOVE 10 TO RECORDCOUNT IN ZWS_FILE
+           MOVE 250 TO RECORDSIZE IN ZWS_FILE
+           CALL ZTESTUT USING ZWS_FILE, FILEOBJECT IN FILE_FIXEDDATA
 
       ******************************************************************
       * Using the previous base object pointer, create a KSDS file     *
       * object to be intercepted when being accessed by program        *
       * ZTPKSDST.                                                      *
       ******************************************************************
-           move low-values to I_MockKSDS
-           move 'TESTKSDS' to fileName in ZWS_MockKSDS
-           set fileObject in ZWS_MockKSDS to
-               address of fileObject in FILE_FixedData
-           move 1 to keyOffset in ZWS_MockKSDS
-           move 8 to keyLength in ZWS_MockKSDS
-           call ZTESTUT using ZWS_MockKSDS,
-                KSDSObject in KSDS_FixedData
+           MOVE LOW-VALUES TO I_MOCKKSDS
+           MOVE 'TESTKSDS' TO FILENAME IN ZWS_MOCKKSDS
+           SET FILEOBJECT IN ZWS_MOCKKSDS TO
+              ADDRESS OF FILEOBJECT IN FILE_FIXEDDATA
+           MOVE 1 TO KEYOFFSET IN ZWS_MOCKKSDS
+           MOVE 8 TO KEYLENGTH IN ZWS_MOCKKSDS
+           CALL ZTESTUT USING ZWS_MOCKKSDS,
+                              KSDSOBJECT IN KSDS_FIXEDDATA
 
       ******************************************************************
       * Spy on the KSDS file.                                          *
       ******************************************************************
-           move low-values to I_SpyKSDS
-           move 'TESTKSDS' to fileName in ZWS_SpyKSDS
-           set sideEffect in ZWS_SpyKSDS to entry 'TESTKSDS_fixedAccess'
-           call ZTESTUT using ZWS_SpyKSDS,
-                ksdsSpyObject in KSDS_FixedData
+           MOVE LOW-VALUES TO I_SPYKSDS
+           MOVE 'TESTKSDS' TO FILENAME IN ZWS_SPYKSDS
+           SET SIDEEFFECT IN ZWS_SPYKSDS TO ENTRY 'TESTKSDS_fixedAccess'
+           CALL ZTESTUT USING ZWS_SPYKSDS,
+                              KSDSSPYOBJECT IN KSDS_FIXEDDATA
 
       ******************************************************************
       * Load and prepare the user application program ZTPKSDST for     *
@@ -164,12 +194,12 @@
       * be done all in 1 call to RunFunction or as individual calls    *
       * to PrepareModule, GetFunction and then call the function.      *
       ******************************************************************
-           move low-values to I_RunFunction
-           move 'ZTPKSDST' to moduleName in ZWS_RunFunction
-           move 'ZTPKSDST' to functionName in ZWS_RunFunction
-           call ZTESTUT using ZWS_RunFunction
+           MOVE LOW-VALUES TO I_RUNFUNCTION
+           MOVE 'ZTPKSDST' TO MODULENAME IN ZWS_RUNFUNCTION
+           MOVE 'ZTPKSDST' TO FUNCTIONNAME IN ZWS_RUNFUNCTION
+           CALL ZTESTUT USING ZWS_RUNFUNCTION
 
-           goback.
+           GOBACK.
 
       ******************************************************************
       *                                                                *
@@ -179,36 +209,40 @@
       *                                                                *
       *                                                                *
       ******************************************************************
-           entry 'TESTKSDS_fixedAccess' using MY_KSDS_SPY.
+           ENTRY 'TESTKSDS_fixedAccess' USING MY_KSDS_SPY.
 
       ******************************************************************
       * Map the linkage section to the address of the last record.     *
       ******************************************************************
-           set address of ZLS_KSDS_Record to lastCall in MY_KSDS_SPY
+           SET ADDRESS OF ZLS_KSDS_RECORD TO LASTCALL IN MY_KSDS_SPY
 
       ******************************************************************
       * Display each written record when intercepted.                  *
       ******************************************************************
-           if command in ZLS_KSDS_Record = 'WRITE' and
-              statusCode1 in ZLS_KSDS_Record = '00'
-              set address of MY_KSDSData to
-                  ptr in record_ in ZLS_KSDS_Record
-              display 'WRITE=' siz in record_ in ZLS_KSDS_Record  ' '
-                     MY_KSDSData (1: siz in record_ in ZLS_KSDS_Record)
-           end-if
+           IF COMMAND IN ZLS_KSDS_RECORD = 'WRITE' AND
+              STATUSCODE1 IN ZLS_KSDS_RECORD = '00'
+              SET ADDRESS OF MY_KSDSDATA TO
+                 PTR IN RECORD_ IN ZLS_KSDS_RECORD
+              DISPLAY 'WRITE='
+                      SIZ IN RECORD_ IN ZLS_KSDS_RECORD
+                      ' '
+                      MY_KSDSDATA(1:SIZ IN RECORD_ IN ZLS_KSDS_RECORD)
+           END-IF
 
       ******************************************************************
       * Display each read record when intercepted.                     *
       ******************************************************************
-           if command in ZLS_KSDS_Record = 'READ' and
-              statusCode1 in ZLS_KSDS_Record = '00'
-              set address of MY_KSDSData to
-                  ptr in record_ in ZLS_KSDS_Record
-              display 'READ=' siz in record_ in ZLS_KSDS_Record  ' '
-                     MY_KSDSData (1: siz in record_ in ZLS_KSDS_Record)
-           end-if
+           IF COMMAND IN ZLS_KSDS_RECORD = 'READ' AND
+              STATUSCODE1 IN ZLS_KSDS_RECORD = '00'
+              SET ADDRESS OF MY_KSDSDATA TO
+                 PTR IN RECORD_ IN ZLS_KSDS_RECORD
+              DISPLAY 'READ='
+                      SIZ IN RECORD_ IN ZLS_KSDS_RECORD
+                      ' '
+                      MY_KSDSDATA(1:SIZ IN RECORD_ IN ZLS_KSDS_RECORD)
+           END-IF
 
-           goback.
+           GOBACK.
 
       ******************************************************************
       *                                                                *
@@ -218,7 +252,7 @@
       *                                                                *
       *                                                                *
       ******************************************************************
-           entry 'mytestVariable'.
+           ENTRY 'mytestVariable'.
 
       ******************************************************************
       * Create a base file object for KSDS file TESTKSDS with data     *
@@ -229,61 +263,61 @@
       * length specified that is greater than 0, otherwise the file    *
       * object is treated as fixed-length.                             *
       ******************************************************************
-           move low-values to I_File
-           set recordAddress in ZWS_File to
-               address of MY_Data in KSDS_VariableData
-           move 10 to recordCount in ZWS_File
-           move 8 to recordMinimumSize in ZWS_File
-           move 250 to recordSize in ZWS_File
-           call ZTESTUT using ZWS_File, fileObject in FILE_VariableData
+           MOVE LOW-VALUES TO I_FILE
+           SET RECORDADDRESS IN ZWS_FILE TO
+              ADDRESS OF MY_DATA IN KSDS_VARIABLEDATA
+           MOVE 10 TO RECORDCOUNT IN ZWS_FILE
+           MOVE 8 TO RECORDMINIMUMSIZE IN ZWS_FILE
+           MOVE 250 TO RECORDSIZE IN ZWS_FILE
+           CALL ZTESTUT USING ZWS_FILE, FILEOBJECT IN FILE_VARIABLEDATA
 
       ******************************************************************
       * Using the previous base object pointer, create a KSDS file     *
       * object to be intercepted when being accessed by program        *
       * ZTPKSDST.                                                      *
       ******************************************************************
-           move low-values to I_MockKSDS
-           move 'TESTKSDS' to fileName in ZWS_MockKSDS
-           set fileObject in ZWS_MockKSDS to
-               address of fileObject in FILE_VariableData
-           move 1 to keyOffset in ZWS_MockKSDS
-           move 8 to keyLength in ZWS_MockKSDS
-           call ZTESTUT using ZWS_MockKSDS,
-                KSDSObject in KSDS_VariableData
+           MOVE LOW-VALUES TO I_MOCKKSDS
+           MOVE 'TESTKSDS' TO FILENAME IN ZWS_MOCKKSDS
+           SET FILEOBJECT IN ZWS_MOCKKSDS TO
+              ADDRESS OF FILEOBJECT IN FILE_VARIABLEDATA
+           MOVE 1 TO KEYOFFSET IN ZWS_MOCKKSDS
+           MOVE 8 TO KEYLENGTH IN ZWS_MOCKKSDS
+           CALL ZTESTUT USING ZWS_MOCKKSDS,
+                              KSDSOBJECT IN KSDS_VARIABLEDATA
 
       ******************************************************************
       * Spy on the KSDS file.                                          *
       ******************************************************************
-           move low-values to I_SpyKSDS
-           move 'TESTKSDS' to fileName in ZWS_SpyKSDS
-           set sideEffect in ZWS_SpyKSDS to
-               entry 'TESTKSDS_variableAccess'
-           call ZTESTUT using ZWS_SpyKSDS,
-                ksdsSpyObject in KSDS_VariableData
+           MOVE LOW-VALUES TO I_SPYKSDS
+           MOVE 'TESTKSDS' TO FILENAME IN ZWS_SPYKSDS
+           SET SIDEEFFECT IN ZWS_SPYKSDS TO
+              ENTRY 'TESTKSDS_variableAccess'
+           CALL ZTESTUT USING ZWS_SPYKSDS,
+                              KSDSSPYOBJECT IN KSDS_VARIABLEDATA
 
       ******************************************************************
       * Load and prepare the user application program ZTPKSDST for use *
       ******************************************************************
-           move low-values to I_PrepareModule
-           move 'ZTPKSDST' to moduleName in ZWS_PrepareModule
-           call ZTESTUT using ZWS_PrepareModule
+           MOVE LOW-VALUES TO I_PREPAREMODULE
+           MOVE 'ZTPKSDST' TO MODULENAME IN ZWS_PREPAREMODULE
+           CALL ZTESTUT USING ZWS_PREPAREMODULE
 
       ******************************************************************
       * Get the entry point of the ZTPKSDST routine in load module     *
       * ZTPKSDST.                                                      *
       ******************************************************************
-           move low-values to I_GetFunction
-           move 'ZTPKSDST' to moduleName in ZWS_GetFunction
-           move 'ZTPKSDST' to functionName in ZWS_GetFunction
-           call ZTESTUT using ZWS_GetFunction, KSDS_Function
+           MOVE LOW-VALUES TO I_GETFUNCTION
+           MOVE 'ZTPKSDST' TO MODULENAME IN ZWS_GETFUNCTION
+           MOVE 'ZTPKSDST' TO FUNCTIONNAME IN ZWS_GETFUNCTION
+           CALL ZTESTUT USING ZWS_GETFUNCTION, KSDS_FUNCTION
 
       ******************************************************************
       * Start the ZTPKSDST function and receive call backs in          *
       * TESTKSDS_variableAccess.                                       *
       ******************************************************************
-           call KSDS_Function
+           CALL KSDS_FUNCTION
 
-           goback.
+           GOBACK.
 
       ******************************************************************
       *                                                                *
@@ -293,33 +327,37 @@
       *                                                                *
       *                                                                *
       ******************************************************************
-           entry 'TESTKSDS_variableAccess' using MY_KSDS_SPY.
+           ENTRY 'TESTKSDS_variableAccess' USING MY_KSDS_SPY.
 
       ******************************************************************
       * Map the linkage section to the address of the last record.     *
       ******************************************************************
-           set address of ZLS_KSDS_Record to lastCall in MY_KSDS_SPY
+           SET ADDRESS OF ZLS_KSDS_RECORD TO LASTCALL IN MY_KSDS_SPY
 
       ******************************************************************
       * Display each written record when intercepted.                  *
       ******************************************************************
-           if command in ZLS_KSDS_Record = 'WRITE' and
-              statusCode1 in ZLS_KSDS_Record = '00'
-              set address of MY_KSDSData to
-                  ptr in record_ in ZLS_KSDS_Record
-              display 'WRITE=' siz in record_ in ZLS_KSDS_Record  ' '
-                     MY_KSDSData (1: siz in record_ in ZLS_KSDS_Record)
-           end-if
+           IF COMMAND IN ZLS_KSDS_RECORD = 'WRITE' AND
+              STATUSCODE1 IN ZLS_KSDS_RECORD = '00'
+              SET ADDRESS OF MY_KSDSDATA TO
+                 PTR IN RECORD_ IN ZLS_KSDS_RECORD
+              DISPLAY 'WRITE='
+                      SIZ IN RECORD_ IN ZLS_KSDS_RECORD
+                      ' '
+                      MY_KSDSDATA(1:SIZ IN RECORD_ IN ZLS_KSDS_RECORD)
+           END-IF
 
       ******************************************************************
       * Display each read record when intercepted.                     *
       ******************************************************************
-           if command in ZLS_KSDS_Record = 'READ' and
-              statusCode1 in ZLS_KSDS_Record = '00'
-              set address of MY_KSDSData to
-                  ptr in record_ in ZLS_KSDS_Record
-              display 'READ=' siz in record_ in ZLS_KSDS_Record  ' '
-                     MY_KSDSData (1: siz in record_ in ZLS_KSDS_Record)
-           end-if
+           IF COMMAND IN ZLS_KSDS_RECORD = 'READ' AND
+              STATUSCODE1 IN ZLS_KSDS_RECORD = '00'
+              SET ADDRESS OF MY_KSDSDATA TO
+                 PTR IN RECORD_ IN ZLS_KSDS_RECORD
+              DISPLAY 'READ='
+                      SIZ IN RECORD_ IN ZLS_KSDS_RECORD
+                      ' '
+                      MY_KSDSDATA(1:SIZ IN RECORD_ IN ZLS_KSDS_RECORD)
+           END-IF
 
-           goback.
+           GOBACK.
