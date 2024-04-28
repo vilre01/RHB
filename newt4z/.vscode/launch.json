@@ -11,11 +11,12 @@
             "programName": [
                 "COBDEMO"
             ],
-            "host": "mvsde42.lvn.broadcom.net",
-            "port": 18888,
+            "host": "mstrsvw.lvn.broadcom.net",
+            "port": 5201,
+            "interTestCharset": "ISO8859-1",
             "interTestUserName": "VILRE01",
             "interTestSecure": false,
-            "cicsApplId": "CICS00A1"
+            "cicsApplId": "CICSSVWA"
         }
     ]
 }
